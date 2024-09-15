@@ -16,34 +16,41 @@ module tt_um_bitty (
     input  wire       rst_n     // reset_n - low to reset
 );
 
+    wire clk, reset, run, done;
+    reg [15:0] d_out;
+
+    assign clk = ui_in[0];
+    assign reset= ui_in[1];
+    assign run = ui_in[2];
+
+    assign done = uo_out[0];
+
+
+
   // All output pins must be assigned. If not used, assign to 0.
-    typedef enum  logic [1:0] { 
-        S0 = 2'b00,
-        S1 = 2'b01,
-        S2 = 2'b10,
-        S3 = 2'b11
-    } states;
+    parameter S0 = 2'b00;
+    parameter S1 = 2'b01;
+    parameter S2 = 2'b10;
+    parameter S3 = 2'b11;
 
-    states cur_state, next_state;
+    reg [1:0] cur_state, next_state;
 
-    logic run_bitty;
-    logic [15:0] mem_out;
-    logic [7:0] addr;
-    logic [7:0] new_pc;
-    logic [7:0] d_in;
+    reg run_bitty;
+    reg [15:0] mem_out;
+    reg [7:0] addr;
+    reg [7:0] new_pc;
 
     branch_logic instance4(
         .address(addr),
         .instruction(mem_out),
         .last_alu_result(d_out),
-        .done(done),
         .new_pc(new_pc)
     );
 
     pc instance1(
         .clk(clk),
         .en_pc(done),
-        .reset(rst_n),
+        .reset(reset),
         .d_in(new_pc),
         .d_out(addr)
     );
@@ -53,10 +60,6 @@ module tt_um_bitty (
         .addr(addr),
         .out(mem_out)
     );
-
-
-
-    logic instr_valid;
 
     always @(*) begin
         case (cur_state)
@@ -70,10 +73,10 @@ module tt_um_bitty (
     
 
     always @(posedge clk) begin
+        if(run) begin
             cur_state <= next_state;
-          //  $display("cur_state: ", cur_state);
-            //$display("instr: ", instr);
-        if(rst_n || done) begin
+        end
+        if(reset || done) begin
             cur_state<= S0;
         end
     end
@@ -89,17 +92,17 @@ module tt_um_bitty (
     end
 
 
+
+
     bitty instance3(
         .clk(clk),
-        .reset(rst_n),
+        .reset(reset),
         .run(run_bitty),
         .d_instr(mem_out),
         .done(done),
-        .d_out(d_out)
+        .d_out(d_out),
+
     );
 
- 
-
-    assign instr = mem_out;
 
 endmodule
