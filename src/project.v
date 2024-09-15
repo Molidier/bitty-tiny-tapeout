@@ -19,7 +19,6 @@ module tt_um_bitty (
     wire reset, run, done;
     reg [15:0] d_out;
 
-    assign clk = ui_in[0];
     assign reset= ui_in[1];
     assign run = ui_in[2];
 
