@@ -61,6 +61,7 @@ module tt_um_bitty (
         .out(mem_out)
     );
 
+
     always @(*) begin
         case (cur_state)
             S0: begin
@@ -100,8 +101,7 @@ module tt_um_bitty (
         .run(run_bitty),
         .d_instr(mem_out),
         .done(done),
-        .d_out(d_out),
-
+        .d_out(d_out)
     );
 
 
