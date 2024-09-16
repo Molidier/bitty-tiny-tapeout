@@ -45,14 +45,14 @@ module tt_um_bitty (
     reg [7:0] addr;
     reg [7:0] new_pc;
 
-    branch_logic instance4(
+    branch_logic instance_bl(
         .address(addr),
         .instruction(mem_out),
         .last_alu_result(d_out),
         .new_pc(new_pc)
     );
 
-    pc instance1(
+    pc instance_pc(
         .clk(clk),
         .en_pc(done),
         .reset(reset),
@@ -60,7 +60,7 @@ module tt_um_bitty (
         .d_out(addr)
     );
 
-    memory instance2(
+    memory instance_memory(
         .clk(clk),
         .addr(addr),
         .out(mem_out)
@@ -100,7 +100,7 @@ module tt_um_bitty (
 
 
 
-    bitty instance3(
+    bitty instance_bitty(
         .clk(clk),
         .reset(reset),
         .run(run_bitty),

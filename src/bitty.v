@@ -11,7 +11,7 @@ module bitty(
     genvar k;
     wire [3:0] mux_sel;
     wire [7:0] en;
-    logic [15:0] out [7:0];
+    reg [15:0] out [7:0];
 
     wire [15:0] out_mux;
 

@@ -22,10 +22,11 @@ module cpu(
     reg [1:0] cur_state, next_state;
     wire [1:0] format;
     assign format = d_inst[1:0];
-    /*initial begin
+    initial begin
         en_inst = 1;
         im_d = 16'b0;
-    end*/
+        done = 0;
+    end
 
     always @(*) begin
         // Default values to avoid latches
