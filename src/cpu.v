@@ -1,10 +1,3 @@
-import "DPI-C" function void notify_counter_nine_1();
-import "DPI-C" function void notify_counter_nine_2();
-import "DPI-C" function void notify_counter_nine_3();
-
-
-
-
 module cpu(
     input clk,
     input run,

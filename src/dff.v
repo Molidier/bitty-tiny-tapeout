@@ -1,5 +1,3 @@
-import "DPI-C" function void notify_counter_nine_here();
-
 module dff(
     input clk,
     input en,

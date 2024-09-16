@@ -79,7 +79,7 @@ module bitty(
         .reg6(out[6]),
         .reg7(out[7]),
         .im_d(im_d),
-        .def_val(0),
+        .def_val(16'b0),
         .mux_sel(mux_sel),
         .mux_out(out_mux)
     );
