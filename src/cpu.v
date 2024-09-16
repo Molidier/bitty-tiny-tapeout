@@ -12,7 +12,7 @@ module cpu(
     output reg en_c,
     output reg [7:0] en,
     output reg en_inst,
-    output wire [15:0] im_d
+    output reg [15:0] im_d
 );
 
     parameter S0 = 2'b00;
