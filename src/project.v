@@ -26,7 +26,7 @@ module tt_um_bitty (
     assign run = ui_in[1];
 
     
-    assign uo_out = 8'b0;
+    assign uo_out[7:1] = 7'b0;
     assign uio_out = 8'b0;
     assign uio_oe = 8'b0;
 
