@@ -17,7 +17,7 @@ module tt_um_bitty (
 );
 
     /* verilator lint_off UNUSEDSIGNAL */
-    wire _unused = &{ena, rst_n, 1'b0, ui_in[7:2], uo_out[7:1], uio_in, uio_out, uio_oe};
+    wire _unused = &{ena, rst_n, 1'b0, ui_in[7:2], uio_in};
 
     wire reset, run, done;
     reg [15:0] d_out;
@@ -25,7 +25,10 @@ module tt_um_bitty (
     assign reset= ui_in[0];
     assign run = ui_in[1];
 
-    assign done = uo_out[0];
+    
+    assign uo_out = 8'b0;
+    assign uio_out = 8'b0;
+    assign uio_oe = 8'b0;
 
 
 
@@ -106,5 +109,6 @@ module tt_um_bitty (
         .d_out(d_out)
     );
 
+   assign uo_out[0] =  done;
 
 endmodule
