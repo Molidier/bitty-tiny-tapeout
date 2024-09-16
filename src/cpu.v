@@ -12,7 +12,7 @@ module cpu(
     output reg en_c,
     output reg [7:0] en,
     output reg en_inst,
-    output wire [15:0] im_d
+    output reg [15:0] im_d
 );
 
     parameter S0 = 2'b00;
@@ -127,7 +127,7 @@ module cpu(
     end
 
     // Next state sequential logic
-    always @(posedge clk or posedge reset) begin
+    always @(posedge clk) begin
         if (reset) begin
             cur_state <= S0;
         end 

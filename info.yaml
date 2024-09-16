@@ -30,9 +30,9 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: "reset"
-  ui[2]: "run"
+  ui[0]: "reset"
+  ui[1]: "run"
+  ui[2]: ""
   ui[3]: ""
   ui[4]: ""
   ui[5]: ""

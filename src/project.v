@@ -16,11 +16,13 @@ module tt_um_bitty (
     input  wire       rst_n     // reset_n - low to reset
 );
 
+    wire _unused = &{ena, rst_n, 1'b0, ui_in[2:7], uo_out[1:7], uio_in, uio_out, uio_oe};
+
     wire reset, run, done;
     reg [15:0] d_out;
 
-    assign reset= ui_in[1];
-    assign run = ui_in[2];
+    assign reset= ui_in[0];
+    assign run = ui_in[1];
 
     assign done = uo_out[0];
 
