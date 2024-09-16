@@ -8,7 +8,7 @@ module memory(
 );
     reg [15:0] memory_array [0:255]; // 256 instructions each with 16 bits
     initial begin
-        $readmemh("/home/molidier/bitty-tiny-tapeout/src/instructions.hex", memory_array);
+        $readmemh("./instructions.hex", memory_array);
     end
 
     always @(posedge clk) begin
