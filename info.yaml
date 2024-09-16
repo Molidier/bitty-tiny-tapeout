@@ -24,7 +24,6 @@ project:
     - "dff.v"
     - "fetch_unit.v"
     - "mux.v"
-    - "instructions.hex"
 
 
 
@@ -41,7 +40,7 @@ pinout:
   ui[7]: ""
 
   # Outputs
-  uo[0]: ""
+  uo[0]: "done"
   uo[1]: ""
   uo[2]: ""
   uo[3]: ""
