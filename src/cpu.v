@@ -12,7 +12,7 @@ module cpu(
     output reg en_c,
     output reg [7:0] en,
     output reg en_inst,
-    output reg [15:0] im_d
+    output wire [15:0] im_d
 );
 
     parameter S0 = 2'b00;
@@ -22,11 +22,10 @@ module cpu(
     reg [1:0] cur_state, next_state;
     wire [1:0] format;
     assign format = d_inst[1:0];
-    initial begin
+    /*initial begin
         en_inst = 1;
         im_d = 16'b0;
-        done = 0;
-    end
+    end*/
 
     always @(*) begin
         // Default values to avoid latches
@@ -110,7 +109,7 @@ module cpu(
                     end
 
                     sel = 3'b0;
-                    done = 1;
+                    done = 1'b1;
                     en_inst = 1;
                 end
                 default: begin
@@ -136,6 +135,9 @@ module cpu(
         else begin
             cur_state <= next_state;
         end
+        /*if(done==1'b1) begin
+            notify_counter_nine_3();
+        end*/
        // notify_counter_nine_here();
         //cur_state <= next_state;
     end
