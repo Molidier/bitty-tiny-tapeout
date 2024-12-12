@@ -2,10 +2,11 @@
 # See https://docs.cocotb.org/en/stable/quickstart.html for more info
 
 # defaults
-SIM ?= icarus
+SIM ?= verilator
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
 PROJECT_SOURCES = \
+  project_final.v \
   fui_control_2.v \
   alu.v \
   bitty.v \
@@ -22,9 +23,6 @@ PROJECT_SOURCES = \
   uart_module.v \
   uart_tx.v \
   uart_rx.v
-
-
-
 
 ifneq ($(GATES),yes)
 
@@ -57,5 +55,15 @@ TOPLEVEL = tb
 # MODULE is the basename of the Python test file
 MODULE = new_tb
 
-# include cocotb's make rules to take care of the simulator setup
+# Verilator-specific flags
+VERILATOR_FLAGS += --trace --Wno-IMPLICIT --Wno-WIDTHEXPAND --Wno-LATCH
+# Optional: Enable waveform generation (VCD format)
+WAVEFORM = 1
+VERILATOR_ARGS += --trace
+EXTRA_ARGS += --trace --trace-structs
+# Specify Verilog source files
+# Export environment variables for cocotb
+export COCOTB_RESOLVE_MODULE=$(MODULE)
+
+# Include Cocotb's Makefile
 include $(shell cocotb-config --makefiles)/Makefile.sim
